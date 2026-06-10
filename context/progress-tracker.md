@@ -40,3 +40,4 @@ Update this file whenever the current phase, active feature, or implementation s
 - 2026-06-10: Added `components/editor/editor-navbar.tsx`, `components/editor/project-sidebar.tsx`, and `components/editor/editor-dialog-pattern.tsx`.
 - 2026-06-10: Removed the extra editor shell route wiring so `02-editor` only leaves the requested reusable components in place.
 - 2026-06-10: Verification passed with `npm run lint` and `npx tsc --noEmit`. `npm run build` was attempted twice but failed before code validation because `next/font/google` could not fetch Geist assets from Google Fonts.
+- 2026-06-10: Tightened `ProjectSidebar` close behavior by requiring `onClose` when rendering the always-visible close button.

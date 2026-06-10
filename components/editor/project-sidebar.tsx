@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
 
 interface ProjectSidebarProps {
   isOpen: boolean
-  onClose?: () => void
+  onClose: () => void
 }
 
 interface EmptyProjectStateProps {
