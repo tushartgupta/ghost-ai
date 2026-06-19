@@ -1,0 +1,118 @@
+import type { NextClerkProviderProps } from "@clerk/nextjs/types"
+import { dark } from "@clerk/ui/themes"
+
+export const clerkAppearance = {
+  theme: dark,
+  variables: {
+    borderRadius: "var(--radius-xl)",
+    colorBackground: "var(--bg-surface)",
+    colorBorder: "var(--border-default)",
+    colorDanger: "var(--state-error)",
+    colorForeground: "var(--text-primary)",
+    colorInput: "var(--bg-subtle)",
+    colorInputForeground: "var(--text-primary)",
+    colorMuted: "var(--bg-subtle)",
+    colorMutedForeground: "var(--text-muted)",
+    colorNeutral: "var(--text-secondary)",
+    colorPrimary: "var(--accent-primary)",
+    colorPrimaryForeground: "var(--bg-base)",
+    colorRing: "var(--accent-primary)",
+    colorSuccess: "var(--state-success)",
+    colorWarning: "var(--state-warning)",
+    fontFamily: "var(--font-geist-sans)",
+    fontFamilyButtons: "var(--font-geist-sans)",
+    fontFamilyMono: "var(--font-geist-mono)",
+    fontSize: "1rem",
+  },
+  elements: {
+    rootBox: {
+      fontFamily: "var(--font-geist-sans)",
+      width: "100%",
+    },
+    cardBox: {
+      backgroundColor: "var(--bg-surface)",
+      border: "1px solid var(--border-default)",
+      borderRadius: "var(--radius-3xl)",
+      boxShadow: "none",
+      width: "100%",
+    },
+    card: {
+      backgroundColor: "var(--bg-surface)",
+      borderRadius: "var(--radius-3xl)",
+      boxShadow: "none",
+      padding: "3rem",
+    },
+    headerTitle: {
+      color: "var(--text-primary)",
+      fontFamily: "var(--font-geist-sans)",
+      fontSize: "1.5rem",
+      fontWeight: "600",
+      letterSpacing: "0",
+    },
+    headerSubtitle: {
+      color: "var(--text-muted)",
+      fontFamily: "var(--font-geist-sans)",
+      fontSize: "1rem",
+      letterSpacing: "0",
+    },
+    socialButtonsBlockButton: {
+      backgroundColor: "var(--bg-surface)",
+      border: "1px solid var(--border-default)",
+      borderRadius: "var(--radius-xl)",
+      color: "var(--text-secondary)",
+      fontFamily: "var(--font-geist-sans)",
+      fontWeight: "500",
+      minHeight: "3.75rem",
+    },
+    socialButtonsBlockButtonText: {
+      color: "var(--text-secondary)",
+      fontFamily: "var(--font-geist-sans)",
+      fontSize: "1rem",
+      fontWeight: "500",
+    },
+    dividerLine: {
+      backgroundColor: "var(--border-default)",
+    },
+    dividerText: {
+      color: "var(--text-muted)",
+      fontFamily: "var(--font-geist-sans)",
+    },
+    formFieldLabel: {
+      color: "var(--text-primary)",
+      fontFamily: "var(--font-geist-sans)",
+      fontSize: "0.9375rem",
+      fontWeight: "600",
+    },
+    formFieldInput: {
+      backgroundColor: "var(--bg-subtle)",
+      border: "1px solid var(--border-default)",
+      borderRadius: "var(--radius-xl)",
+      color: "var(--text-primary)",
+      fontFamily: "var(--font-geist-sans)",
+      fontSize: "1rem",
+      minHeight: "3.75rem",
+    },
+    formButtonPrimary: {
+      backgroundColor: "var(--accent-primary)",
+      borderRadius: "var(--radius-xl)",
+      color: "var(--bg-base)",
+      fontFamily: "var(--font-geist-sans)",
+      fontSize: "1rem",
+      fontWeight: "600",
+      minHeight: "3.75rem",
+    },
+    footer: {
+      backgroundColor: "var(--bg-elevated)",
+      borderTop: "1px solid var(--border-default)",
+    },
+    footerActionText: {
+      color: "var(--text-muted)",
+      fontFamily: "var(--font-geist-sans)",
+    },
+    footerActionLink: {
+      color: "var(--accent-primary)",
+      fontFamily: "var(--font-geist-sans)",
+      fontWeight: "600",
+    },
+  },
+} satisfies NextClerkProviderProps["appearance"]
