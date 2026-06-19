@@ -30,6 +30,7 @@ Update this file whenever the current phase, active feature, or implementation s
 - `03-auth` Clerk proxy body forwarding: `/__clerk` now buffers proxied request bodies and uses the `https-proxy-agent` path for POST/PATCH/PUT/DELETE requests as well as GETs when proxy env vars are set.
 - `03-auth` Clerk local runtime assets: matching `@clerk/clerk-js@6.17.0` and `@clerk/ui@1.17.0` packages are installed and `/__clerk` serves both package asset families locally.
 - `03-auth` sign-out redirect fix: ClerkProvider now sends completed sign-outs directly to `/sign-in` instead of relying on a transient `/` redirect.
+- `03-auth` Clerk proxy cookie preservation fix: `/__clerk` now preserves multi-value upstream response headers, including separate `Set-Cookie` headers, when returning proxied Clerk API responses.
 
 ## In Progress
 
@@ -106,3 +107,5 @@ Update this file whenever the current phase, active feature, or implementation s
 - 2026-06-18: Production verification passed with `npm run build` outside VPN. Runtime smoke testing on a temporary production server confirmed `/` redirects to `/sign-in`, `/sign-in` returns 200, Clerk major-version aliases redirect to pinned local versions, and versioned Clerk JS/UI/sign-in chunk assets return 200 with `x-clerk-local-asset`.
 - 2026-06-18: After sign-out testing showed a transient `GET / 200` before `/sign-in`, set `afterSignOutUrl` and `afterMultiSessionSingleSignOutUrl` on `ClerkProvider` to `/sign-in`.
 - 2026-06-18: Verification passed with `npm run lint`, `npx tsc --noEmit`, `npm run build`, and a temporary production server smoke test confirming signed-out `/` redirects to `/sign-in` and `/sign-in` returns 200.
+- 2026-06-19: Applied the Clerk proxy response-header review fix: upstream `Set-Cookie` headers are extracted with `Headers.getSetCookie()` when available and appended individually, while non-stripped response headers use `append()` instead of `set()`.
+- 2026-06-19: Verification passed with `npm run lint` and `npx tsc --noEmit`. `npm run build` was attempted but failed before application validation because `next/font/google` could not fetch Geist and Geist Mono from Google Fonts.

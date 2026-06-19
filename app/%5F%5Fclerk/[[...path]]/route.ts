@@ -71,6 +71,10 @@ interface ClerkFetchOptions extends RequestInit {
   duplex?: "half"
 }
 
+interface HeadersWithOptionalSetCookie {
+  getSetCookie?: () => string[]
+}
+
 export async function GET(request: Request) {
   return proxyClerkFrontendApi(request)
 }
@@ -442,13 +446,21 @@ function createResponseHeaders(
   requestOrigin: string,
 ) {
   const responseHeaders = new Headers()
+  const setCookieHeaders = getSetCookieHeaders(headers)
 
   headers.forEach((value, key) => {
     const lowerKey = key.toLowerCase()
 
-    if (!RESPONSE_HEADERS_TO_STRIP.has(lowerKey)) {
-      responseHeaders.set(key, value)
+    if (
+      !RESPONSE_HEADERS_TO_STRIP.has(lowerKey) &&
+      lowerKey !== "set-cookie"
+    ) {
+      responseHeaders.append(key, value)
     }
+  })
+
+  setCookieHeaders.forEach((cookie) => {
+    responseHeaders.append("set-cookie", cookie)
   })
 
   const location = headers.get("location")
@@ -464,4 +476,22 @@ function createResponseHeaders(
   }
 
   return responseHeaders
+}
+
+function getSetCookieHeaders(headers: Headers) {
+  const headersWithSetCookie = headers as HeadersWithOptionalSetCookie
+
+  if (typeof headersWithSetCookie.getSetCookie === "function") {
+    return headersWithSetCookie.getSetCookie()
+  }
+
+  const cookies: string[] = []
+
+  headers.forEach((value, key) => {
+    if (key.toLowerCase() === "set-cookie") {
+      cookies.push(value)
+    }
+  })
+
+  return cookies
 }
